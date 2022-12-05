@@ -1,0 +1,32 @@
+.automato-details-container {
+  text-align: start;
+}
+
+span {
+  font-weight: bold;
+}
+
+ul, li {
+  white-space: nowrap;
+}
+
+.from-text {
+  color: rgb(116, 185, 251);
+}
+
+.to-text {
+  color: rgb(240, 121, 121);
+}
+
+
+.read-text {
+  color: rgb(116, 251, 174);
+}
+
+.transition-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+

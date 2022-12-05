@@ -1,0 +1,12 @@
+.transitions-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 6px;
+}
+
+.trans-input-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

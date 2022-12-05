@@ -1,0 +1,9 @@
+select {
+  height: 30px;
+  padding-left: 8px;
+}
+
+option {
+  background-color: black;
+  font-size: 18px;
+}

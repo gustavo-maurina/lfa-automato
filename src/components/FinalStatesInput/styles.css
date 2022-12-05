@@ -1,0 +1,13 @@
+.final-states-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.final-states-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

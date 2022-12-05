@@ -1,0 +1,1 @@
+export { EntradaForm } from "./EntradaForm";

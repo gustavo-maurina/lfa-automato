@@ -1,0 +1,25 @@
+.submit-automato-button {
+  margin-top: 20px;
+}
+
+.automato-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.automato-container form {
+  width: 60%;
+  display: flex;
+  gap: 16px;
+}
+
+.form-and-details-container {
+  display: flex;
+}
+
+.initial-state-wrapper {
+  display: flex;
+  flex-direction: column;
+}

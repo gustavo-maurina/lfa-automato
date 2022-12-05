@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.input-container {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.plus-button {
+  height: 30px;
+  width: 20%;
+}

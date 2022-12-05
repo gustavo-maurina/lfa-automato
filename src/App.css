@@ -1,0 +1,32 @@
+#root {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 80px;
+  outline: 1px solid rgba(128, 128, 128, 0.392);
+  border-radius: 5px;
+  background-color: rgb(24, 24, 24);
+  padding: 2rem;
+  min-width: 600px;
+  width: fit-content;
+}
+
+@media screen and (max-width: 800px) {
+  .app {
+    align-items: center;
+    gap: 60px;
+    width: 425px;
+  }
+}
