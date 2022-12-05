@@ -46,7 +46,7 @@ export function verificarPertencimento(automato: Automato, entrada: string[]) {
 		} else if (!automato.canBeEmpty && entrada.length == 1 && entrada[i] == '&') {
 			return false;
 		} else if (entrada[i] == '&' && i == entrada.length - 1) {
-			if (!estadosFinais.includes(transicaoAnterior?.to)) {
+			if (transicaoAnterior === undefined || !estadosFinais.includes(transicaoAnterior.to)) {
 				return false;
 			}
 			return true;
@@ -65,9 +65,9 @@ export function verificarPertencimento(automato: Automato, entrada: string[]) {
 					return false;
 				}
 			} else {
-				if (estadosFinais.includes(transicao?.to)) {
+				if (transicao && transicao.to && estadosFinais.includes(transicao.to)) {
 					if (i < entrada.length - 1 && entrada.length > 1) {
-						estadoAtual = transicao?.to;
+						estadoAtual = transicao.to;
 						continue;
 					}
 					return true;
