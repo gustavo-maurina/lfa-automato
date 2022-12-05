@@ -27,6 +27,9 @@ export function verificarPertencimento(automato: Automato, entrada: string[]) {
 	let estadoAtual = automato.initialState;
 	let estadosFinais = automato.finalStates;
 
+	console.log(automato, entrada);
+
+
 	for (let i = 0; i < entrada.length; i++) {
 		let transicaoAnterior = automato.transitions.find(t => t.to === estadoAtual && t.read === entrada[i - 1]);
 		let transicao = automato.transitions.find(t => t.from === estadoAtual && t.read === entrada[i]);
@@ -43,7 +46,7 @@ export function verificarPertencimento(automato: Automato, entrada: string[]) {
 		} else if (!automato.canBeEmpty && entrada.length == 1 && entrada[i] == '&') {
 			return false;
 		} else if (entrada[i] == '&' && i == entrada.length - 1) {
-			if (!estadosFinais.includes(transicaoAnterior!.to)) {
+			if (!estadosFinais.includes(transicaoAnterior?.to)) {
 				return false;
 			}
 			return true;
@@ -62,9 +65,9 @@ export function verificarPertencimento(automato: Automato, entrada: string[]) {
 					return false;
 				}
 			} else {
-				if (estadosFinais.includes(transicao!.to)) {
-					if (i < entrada.length) {
-						estadoAtual = transicao!.to;
+				if (estadosFinais.includes(transicao?.to)) {
+					if (i < entrada.length - 1 && entrada.length > 1) {
+						estadoAtual = transicao?.to;
 						continue;
 					}
 					return true;

@@ -88,7 +88,9 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
       return alert("Configuraçao inválida, verifique novamente os campos");
     }
 
+    console.log(automatoConfig);
     setAutomato(automatoConfig);
+
   };
 
   return (

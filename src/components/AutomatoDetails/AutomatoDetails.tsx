@@ -10,10 +10,14 @@ export const AutomatoDetails = ({ automato }: AutomatoDetailsProps) => {
   return (
     <div className="automato-details-container">
       <ul>
-        <li>Estados: [ {automato.states.join(", ")} ]</li>
-        <li>Alfabeto: [ {automato.alphabet.join(", ")} ]</li>
         <li>
-          Transições:
+          <strong>Estados</strong>: [ {automato.states.join(", ")} ]
+        </li>
+        <li>
+          <strong>Alfabeto</strong>: [ {automato.alphabet.join(", ")} ]
+        </li>
+        <li>
+          <strong>Transições</strong>:
           <ul>
             {automato.transitions.map(({ from, read, to }, i) => (
               <li className="transition-container" key={i}>
@@ -24,10 +28,14 @@ export const AutomatoDetails = ({ automato }: AutomatoDetailsProps) => {
             ))}
           </ul>
         </li>
-        <li>Estado inicial: {automato.initialState}</li>
-        <li>Estados finais: [ {automato.finalStates.join(", ")} ]</li>
         <li>
-          Pode ser vazio?{" "}
+          <strong>Estado inicial</strong>: {automato.initialState}
+        </li>
+        <li>
+          <strong>Estados finais</strong>: [ {automato.finalStates.join(", ")} ]
+        </li>
+        <li>
+          <strong> Pode ser vazio?</strong>{" "}
           {automato.canBeEmpty ? (
             <span className="read-text">Sim</span>
           ) : (

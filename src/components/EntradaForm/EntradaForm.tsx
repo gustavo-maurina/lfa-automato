@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { Automato } from "../../types/Automato";
+import { isEmpty } from "../../utils/isEmpty";
 import { verificarPertencimento } from "../../utils/verificarPertencimentos";
 import { Button } from "../Button";
 import { Input } from "../Input";
@@ -23,7 +24,10 @@ export const EntradaForm = ({ automato }: EntradaFormProps) => {
     e.preventDefault();
     if (!inputArray.current) return;
 
-    if (verificarPertencimento(automato, inputArray.current)) {
+    const entrada = isEmpty(inputArray.current) ? ['&'] : inputArray.current
+
+    console.log('result =', verificarPertencimento(automato, entrada));
+    if (verificarPertencimento(automato, entrada)) {
       setIsValid(true);
       return;
     }
