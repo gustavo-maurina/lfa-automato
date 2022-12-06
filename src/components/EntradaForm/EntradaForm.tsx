@@ -19,14 +19,11 @@ export const EntradaForm = ({ automato }: EntradaFormProps) => {
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    console.log(isValid);
-
     e.preventDefault();
     if (!inputArray.current) return;
 
     const entrada = isEmpty(inputArray.current) ? ['&'] : inputArray.current
 
-    console.log('result =', verificarPertencimento(automato, entrada));
     if (verificarPertencimento(automato, entrada)) {
       setIsValid(true);
       return;

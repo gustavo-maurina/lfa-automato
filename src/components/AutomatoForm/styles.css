@@ -23,3 +23,10 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width:800px) {
+  .form-and-details-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

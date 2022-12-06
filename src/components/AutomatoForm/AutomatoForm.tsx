@@ -39,13 +39,11 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
     (state) => !automatoConfig.finalStates.includes(state)
   );
 
-
-
   const handleAddEstado = (value: string) => {
     setAutomatoConfig((curr) => ({
       ...curr,
       states: [...new Set([...curr.states, value])],
-      initialState: isEmpty(curr.initialState) ? value : curr.initialState
+      initialState: isEmpty(curr.initialState) ? value : curr.initialState,
     }));
   };
 
@@ -88,9 +86,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
       return alert("Configuraçao inválida, verifique novamente os campos");
     }
 
-    console.log(automatoConfig);
     setAutomato(automatoConfig);
-
   };
 
   return (
@@ -149,6 +145,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
         <AutomatoDetails automato={automatoConfig} />
       </div>
 
+      <div>
       <Button
         className="submit-automato-button"
         type="submit"
@@ -156,6 +153,8 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
       >
         Confirmar automato
       </Button>
+      <p style={{lineHeight:0, fontSize: 14, color:'gray'}}>Obs: confirmar automato sempre que houver uma mudança</p>
+      </div>
     </div>
   );
 };
