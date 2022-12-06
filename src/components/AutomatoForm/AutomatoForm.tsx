@@ -19,9 +19,10 @@ import { isEmpty } from "../../utils/isEmpty";
 
 interface AutomatoFormProps {
   setAutomato: Dispatch<SetStateAction<Automato | undefined>>;
+  setHasPendingChanges: Dispatch<SetStateAction<boolean>>
 }
 
-export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
+export const AutomatoForm = ({ setAutomato, setHasPendingChanges }: AutomatoFormProps) => {
   const [automatoConfig, setAutomatoConfig] = useState<Automato>({
     states: [],
     alphabet: [],
@@ -40,6 +41,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
   );
 
   const handleAddEstado = (value: string) => {
+    setHasPendingChanges(true);
     setAutomatoConfig((curr) => ({
       ...curr,
       states: [...new Set([...curr.states, value])],
@@ -48,6 +50,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
   };
 
   const handleAddAlfabeto = (value: string) => {
+    setHasPendingChanges(true);
     setAutomatoConfig((curr) => ({
       ...curr,
       alphabet: [...new Set([...curr.alphabet, value])],
@@ -55,6 +58,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
   };
 
   const handleAddTransition = (transition: Transition) => {
+    setHasPendingChanges(true);
     setAutomatoConfig((curr) => ({
       ...curr,
       transitions: [...curr.transitions, transition],
@@ -62,6 +66,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
   };
 
   const handleAddFinalStates = (state: string) => {
+    setHasPendingChanges(true);
     setAutomatoConfig((curr) => ({
       ...curr,
       finalStates: [...curr.finalStates, state],
@@ -69,6 +74,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
   };
 
   const handleCanBeEmptyCheck = (checked: boolean) => {
+    setHasPendingChanges(true);
     setAutomatoConfig((curr) => ({
       ...curr,
       canBeEmpty: checked,
@@ -86,6 +92,7 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
       return alert("Configuraçao inválida, verifique novamente os campos");
     }
 
+    setHasPendingChanges(false)
     setAutomato(automatoConfig);
   };
 
@@ -117,12 +124,13 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
               <div className="initial-state-wrapper">
                 <label>Estado inicial</label>
                 <Select
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    setHasPendingChanges(true);
                     setAutomatoConfig((curr) => ({
                       ...curr,
                       initialState: e.target.value,
-                    }))
-                  }
+                    }));
+                  }}
                 >
                   {automatoConfig.states.map((state, i) => (
                     <option key={i} value={state}>
@@ -146,14 +154,16 @@ export const AutomatoForm = ({ setAutomato }: AutomatoFormProps) => {
       </div>
 
       <div>
-      <Button
-        className="submit-automato-button"
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Confirmar automato
-      </Button>
-      <p style={{lineHeight:0, fontSize: 14, color:'gray'}}>Obs: confirmar automato sempre que houver uma mudança</p>
+        <Button
+          className="submit-automato-button"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Confirmar automato
+        </Button>
+        <p style={{ lineHeight: 0, fontSize: 14, color: "gray" }}>
+          Obs: confirmar automato sempre que houver uma mudança
+        </p>
       </div>
     </div>
   );

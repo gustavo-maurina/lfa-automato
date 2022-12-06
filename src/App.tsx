@@ -9,11 +9,12 @@ import { Automato } from "./types/Automato";
 
 function App() {
   const [automato, setAutomato] = useState<Automato>();
+  const [hasPendindChanges, setHasPendingChanges] = useState(false);
 
   return (
     <div className="app">
-      <AutomatoForm setAutomato={setAutomato} />
-      {automato && <EntradaForm automato={automato}/>}
+      <AutomatoForm setAutomato={setAutomato} setHasPendingChanges={setHasPendingChanges} />
+      {automato && !hasPendindChanges && <EntradaForm automato={automato}/>}
     </div>
   );
 }
