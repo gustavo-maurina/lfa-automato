@@ -19,10 +19,13 @@ import { isEmpty } from "../../utils/isEmpty";
 
 interface AutomatoFormProps {
   setAutomato: Dispatch<SetStateAction<Automato | undefined>>;
-  setHasPendingChanges: Dispatch<SetStateAction<boolean>>
+  setHasPendingChanges: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AutomatoForm = ({ setAutomato, setHasPendingChanges }: AutomatoFormProps) => {
+export const AutomatoForm = ({
+  setAutomato,
+  setHasPendingChanges,
+}: AutomatoFormProps) => {
   const [automatoConfig, setAutomatoConfig] = useState<Automato>({
     states: [],
     alphabet: [],
@@ -58,6 +61,17 @@ export const AutomatoForm = ({ setAutomato, setHasPendingChanges }: AutomatoForm
   };
 
   const handleAddTransition = (transition: Transition) => {
+    if (
+      automatoConfig.transitions.find(
+        (t) =>
+          t.from === transition.from &&
+          t.to === transition.to &&
+          t.read === transition.read
+      )
+    ) {
+      return;
+    }
+
     setHasPendingChanges(true);
     setAutomatoConfig((curr) => ({
       ...curr,
@@ -92,7 +106,7 @@ export const AutomatoForm = ({ setAutomato, setHasPendingChanges }: AutomatoForm
       return alert("Configuraçao inválida, verifique novamente os campos");
     }
 
-    setHasPendingChanges(false)
+    setHasPendingChanges(false);
     setAutomato(automatoConfig);
   };
 

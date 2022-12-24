@@ -7,6 +7,29 @@ type AutomatoDetailsProps = {
 };
 
 export const AutomatoDetails = ({ automato }: AutomatoDetailsProps) => {
+  const states = automato.states;
+  const transitions = states.map((state) => {
+    return (
+      <>
+        <br/><span>{state}</span>
+        <ul>
+        {automato.transitions.map(({ from, read, to }, i) => {
+          if (from === state) {
+            return (
+              <li className="transition-container" key={i}>
+                <span className="from-text"></span> {from} <ArrowRightIcon />
+                <span className="to-text"></span> {to} (
+                <span className="read-text">ler</span> {read})
+              </li>
+            );
+          }
+        })}
+        </ul>
+
+      </>
+    );
+  });
+
   return (
     <div className="automato-details-container">
       <ul>
@@ -18,15 +41,7 @@ export const AutomatoDetails = ({ automato }: AutomatoDetailsProps) => {
         </li>
         <li>
           <strong>Transições</strong>:
-          <ul>
-            {automato.transitions.map(({ from, read, to }, i) => (
-              <li className="transition-container" key={i}>
-                <span className="from-text"></span> {from} <ArrowRightIcon />
-                <span className="to-text"></span> {to} (
-                <span className="read-text">ler</span> {read})
-              </li>
-            ))}
-          </ul>
+          {transitions}
         </li>
         <li>
           <strong>Estado inicial</strong>: {automato.initialState}
